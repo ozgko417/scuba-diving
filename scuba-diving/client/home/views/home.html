@@ -1,0 +1,40 @@
+<div>
+	<h3>Recent Activities</h3>
+	<ul>
+		<li ng-repeat="activity in activities" class="list">
+
+			<table style="width:100%">
+				<tr>
+					<td>
+						<span> <a href="/activities/{{activity._id}}">{{activity.name}}</a> - {{activity.date | date:'dd/MM/yyyy'}}</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{{findlevel(activity.level).name}}</span>
+					</td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+
+	<div ng-if="currentUser">
+		<h3>Recent Logbooks</h3>
+		<a href="/logbooks">Add new Logbook</a>
+		<ul>
+			<li ng-repeat="logbook in logbooks" class="list">
+
+				<table style="width:100%">
+					<tr>
+						<td>
+							<span>
+								<a href="/logbooks/{{logbook._id}}">{{logbook.name}}</a> - {{logbook.date | date:'dd/MM/yyyy'}}
+							</span>
+						</td>
+					</tr>
+				</table>
+				
+			</li>
+		</ul>
+	</div>
+</div>

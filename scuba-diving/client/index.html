@@ -1,0 +1,36 @@
+<head>
+	<title>Scuba Diving School</title>
+	<base href="/">
+</head>
+
+<body>
+
+	<div class="container" ng-app="scuba-diving">	
+		<nav class="navbar">
+			<ul class="nav navbar-nav">
+				<li>
+					<a class="navbar-brand" href="/home">Scuba Diving School</a>
+				</li>
+				<li>
+					<a href="/activities">Activities</a>
+				</li>
+				<li ng-if="currentUser">
+					<a href="/logbooks">Logbooks</a>
+				</li>
+				<li ng-if="currentUser.username == 'admin'">
+					<a href="/roles">Roles</a>
+				</li>
+				<li ng-if="currentUser">
+					<a href="/profile">Profile</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+      			<login-buttons></login-buttons>
+    		</ul>
+		</nav>
+		
+		<header>
+			<div ui-view></div>
+		</header>
+	</div>
+</body>

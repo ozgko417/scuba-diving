@@ -1,0 +1,47 @@
+<form ng-if="isUserInRole(['logbook'])">
+	<form>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputName">Name:</label>
+			<input type="text" ng-model="newLogbook.name" class="form-control" id="inputName" style="width: 50%">
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputBody">Body:</label>
+			<textarea ng-model="newLogbook.body" class="form-control" id="inputBody" style="width: 50%" rows="3"></textarea>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputDate">Date:</label>
+			<input type="date" ng-model="newLogbook.date" class="form-control" id="inputDate" style="width: 50%">
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button ng-click="newLogbook.owner=$root.currentUser._id; logbooks.push(newLogbook); newLogbook=''" class="btn btn-primary">Add</button>
+				<button ng-click="removeAll()" class="btn btn-danger">Remove All</button>
+			</div>
+		</div>
+	</form>
+
+	<h3>All Logbooks</h3>
+
+	<form class="form-inline">
+        <div class="form-group">
+            <input type="search" ng-model="search" placeholder="Search Logbook Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <select ng-model="orderProperty" class="form-control">
+				<option value="1">Ascending</option>
+				<option value="-1">Descending</option>
+			</select>
+        </div>
+    </form>
+
+	<ul>
+		<li dir-paginate="logbook in logbooks | itemsPerPage: perPage" total-items="logbooksCounts.count" class="list">
+			
+			<span>
+				<a href="/logbooks/{{logbook._id}}">{{logbook.name}}</a> - {{logbook.date | date:'dd/MM/yyyy'}}
+			</span> 
+			<button class="delete" ng-click="remove(logbook)">&times;</button>
+		</li>
+	</ul>
+	<dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="client/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+</form>

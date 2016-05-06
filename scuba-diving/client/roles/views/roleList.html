@@ -1,0 +1,26 @@
+<h3>All Users</h3>
+	<form class="form-inline">
+        <div class="form-group">
+            <input type="search" ng-model="search" placeholder="Search User Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <select ng-model="orderProperty" class="form-control">
+				<option value="1">Ascending</option>
+				<option value="-1">Descending</option>
+			</select>
+        </div>
+    </form>
+
+	<ul>
+		<li dir-paginate="user in users | itemsPerPage: perPage" total-items="usersCounts.count" class="list">
+			<span>
+				<strong>{{user.profile.name}}</strong>
+				{{user.profile.surname}}
+			</span>
+			<div style="float: right;" class="checkbox">
+				<label><input type="checkbox" ng-checked="userRoleCheck(user,['activity'])" ng-click="changeRole(user)">Activity Role</label>
+				
+			</div>
+		</li>
+	</ul>
+	<dir-pagination-controls on-page-change="pageChanged(newPageNumber)" template-url="client/pagination/dirPagination.tpl.html"></dir-pagination-controls>

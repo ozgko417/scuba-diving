@@ -1,0 +1,23 @@
+<h4>Logbook Details:</h4>
+
+<form>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputName">Name:</label>
+			<input type="text" ng-model="logbook.name" class="form-control" id="inputName" style="width: 50%">
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputBody">Body:</label>
+			<textarea ng-model="logbook.body" class="form-control" id="inputBody" style="width: 50%" rows="3"></textarea>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label" for="inputDate">Date:</label>
+			<input type="date" ng-model="logbook.date" class="form-control" id="inputDate" style="width: 50%">
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button ng-click="save()" class="btn btn-primary">Save</button>
+				<button ng-click="reset()" class="btn default-primary">Reset</button>
+				<a href="/logbooks">Logbooks List</a>
+			</div>
+		</div>
+	</form>
